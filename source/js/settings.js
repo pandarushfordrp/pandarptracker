@@ -1,5 +1,5 @@
 const deployID = 'AKfycbw7uvLigSxfvGoag37lsS1sdeslbbMprQcT_rrX7grwB9g-snZSBNqHETLm4It3Ut3QcQ';
-const sheetID = `1KmNuixX-Fr6eY8gc13N3km4yIX5QNUcOmJmJMDicuv0/edit?usp=sharing`;
+const sheetID = `1KmNuixX-Fr6eY8gc13N3km4yIX5QNUcOmJmJMDicuv0`;
 
 //Options for relationships and thread tags
 const relationshipSections = `<option value="">(select)</option>

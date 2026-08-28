@@ -137,8 +137,8 @@
     });
 </script>
                     <div class="charts--thread-status charts--breakdown">
-    <h2>site name from sheet</h2>
-    <canvas id="siteidfromsheet"></canvas>
+    <h2>destiny of darkness</h2>
+    <canvas id="dod"></canvas>
 </div>
 <script>
     fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
@@ -148,12 +148,72 @@
         .then((response) => response.json())
         .then((siteData) => {
             //set overall variables
-            let siteName = 'site name from sheet';
+            let siteName = 'destiny of darkness';
             let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
             let threadStats = createThreadStats(threadData, siteObject, siteName, siteData);
 
             /*Thread Status*/
-            new Chart(document.getElementById('siteidfromsheet'), {
+            new Chart(document.getElementById('dod'), {
+                ...chartOptions,
+                data: {
+                    labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
+                    datasets: [{
+                        data: threadStats[0].status.totals,
+                        ...datasetOptions
+                    }]
+                },
+            });
+        });
+    });
+</script>
+                    <div class="charts--thread-status charts--breakdown">
+    <h2>shattered dreams</h2>
+    <canvas id="sd"></canvas>
+</div>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((threadData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            //set overall variables
+            let siteName = 'shattered dreams';
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let threadStats = createThreadStats(threadData, siteObject, siteName, siteData);
+
+            /*Thread Status*/
+            new Chart(document.getElementById('sd'), {
+                ...chartOptions,
+                data: {
+                    labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
+                    datasets: [{
+                        data: threadStats[0].status.totals,
+                        ...datasetOptions
+                    }]
+                },
+            });
+        });
+    });
+</script>
+                    <div class="charts--thread-status charts--breakdown">
+    <h2>kink</h2>
+    <canvas id="kink"></canvas>
+</div>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((threadData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            //set overall variables
+            let siteName = 'kink';
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let threadStats = createThreadStats(threadData, siteObject, siteName, siteData);
+
+            /*Thread Status*/
+            new Chart(document.getElementById('kink'), {
                 ...chartOptions,
                 data: {
                     labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
