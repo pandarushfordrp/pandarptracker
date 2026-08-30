@@ -2579,6 +2579,10 @@ function formatCharacter(character, viewAll, sites) {
 }
 function formatSingleInstance(character, sites) {
     let tagsString = ``;
+    let availableTagTypes = character.tags.map(item => item.tags.length > 0 ? item.type : '').filter(item => item !== '');
+    if(availableTagTypes.length === 0 || !availableTagTypes.includes('status')) {
+        tagsString += `status--inactive`;
+    }
     for(type in character.tags) {
         character.tags[type].tags.forEach((set, i) => {
             tagsString += ` `;
