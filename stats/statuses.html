@@ -226,6 +226,37 @@
         });
     });
 </script>
+                    
+                    <div class="charts--thread-status charts--breakdown">
+    <h2>trigger warning</h2>
+    <canvas id="tw"></canvas>
+</div>
+<script>
+    fetch(`https://opensheet.elk.sh/${sheetID}/Threads`)
+    .then((response) => response.json())
+    .then((threadData) => {
+        fetch(`https://opensheet.elk.sh/${sheetID}/Sites`)
+        .then((response) => response.json())
+        .then((siteData) => {
+            //set overall variables
+            let siteName = 'kink';
+            let siteObject = siteName !== 'all' ? siteData.filter(item => item.Site === siteName) : siteData;
+            let threadStats = createThreadStats(threadData, siteObject, siteName, siteData);
+
+            /*Thread Status*/
+            new Chart(document.getElementById('kink'), {
+                ...chartOptions,
+                data: {
+                    labels: threadStats[0].status.tags.map(item => item.toUpperCase()),
+                    datasets: [{
+                        data: threadStats[0].status.totals,
+                        ...datasetOptions
+                    }]
+                },
+            });
+        });
+    });
+</script>
                 </div>
             </section>
         </main>
